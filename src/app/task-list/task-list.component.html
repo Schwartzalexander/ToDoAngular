@@ -62,7 +62,8 @@
     <h3 i18n="todo list info label">About this ToDo list</h3>
     <p i18n="todo list info paragraph">This ToDo list saves tasks in the local browser cache as well as in the backend
       application. The frontend can be used without the backend, e.g. when the backend is offline. When the backend
-      comes back online, the tasks are synchronized between frontend and backend.</p>
+      comes back online, the tasks are synchronized between frontend and backend on page reload. Because of a race
+      condition, sometimes two reloads might be necessary.</p>
     <h3 i18n="known issue label">Known issue</h3>
     <p i18n="known issue paragraph">The MatChips, which are used to display tasks, are not suitable for that purpose,
       since they have their own selection logic. A clicked MatChip gets a check mark, just like a not clicked, completed
