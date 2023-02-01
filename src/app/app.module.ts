@@ -19,6 +19,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {HttpClientModule} from "@angular/common/http";
 
 ;
 
@@ -44,7 +45,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ReactiveFormsModule,
     MatDatepickerModule,
     MatCheckboxModule,
-
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

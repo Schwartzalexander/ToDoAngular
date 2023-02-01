@@ -50,12 +50,23 @@
       <div class="alert alert-danger" *ngIf="formError">{{formError}}</div>
       <button type="submit" mat-raised-button>
         <mat-icon aria-hidden="true" class="mr-1">save</mat-icon>
-        <span i18n="Save task button">Save</span>
+        <span>{{getSaveButtonLabel()}}</span>
       </button>
       <button type="button" mat-raised-button class="ms-3" *ngIf="selectedTask" (click)="delete(selectedTask)">
         <mat-icon aria-hidden="true" class="mr-1">delete</mat-icon>
         <span i18n="Delete task button">Delete</span>
       </button>
     </div>
+  </div>
+  <div class="alert alert-info mt-3">
+    <h3 i18n="todo list info label">About this ToDo list</h3>
+    <p i18n="todo list info paragraph">This ToDo list saves tasks in the local browser cache as well as in the backend
+      application. The frontend can be used without the backend, e.g. when the backend is offline. When the backend
+      comes back online, the tasks are synchronized between frontend and backend.</p>
+    <h3 i18n="known issue label">Known issue</h3>
+    <p i18n="known issue paragraph">The MatChips, which are used to display tasks, are not suitable for that purpose,
+      since they have their own selection logic. A clicked MatChip gets a check mark, just like a not clicked, completed
+      task. On the other hand, the checkmark of a completed task disappears when it is clicked. However, due to time
+      constraints, I did not fix this problem.</p>
   </div>
 </form>

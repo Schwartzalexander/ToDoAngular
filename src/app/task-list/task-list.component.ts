@@ -70,13 +70,12 @@ export class TaskListComponent implements OnInit, OnDestroy {
       this.formError = $localize`A completed task cannot be uncompleted.`
       return
     }
-    const task: Task = {summary, description, completed, dueDate}
-
-    let success = this.taskService.addTask(task);
-    if (success) {
-      this.formError = ""
-      this.resetForm();
-    }
+    let task: Task = {summary, description, completed, dueDate}
+    if (this.selectedTask?.uid)
+      task = {...task, uid: this.selectedTask.uid}
+    this.taskService.saveTask(task);
+    this.formError = ""
+    this.resetForm();
 
 
   }
@@ -86,6 +85,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     Object.keys(this.form.controls).forEach(key => {
       this.form!.get(key)!.setErrors(null);
     });
+    this.selectedTask = undefined
   }
 
   select(task: Task) {
@@ -107,5 +107,12 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.taskService.deleteTask(task)
     this.selectedTask = undefined
     this.resetForm()
+  }
+
+  getSaveButtonLabel(): string {
+    if (this.selectedTask === undefined)
+      return $localize`Create`
+    else
+      return $localize`Update`
   }
 }

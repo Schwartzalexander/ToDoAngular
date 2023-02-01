@@ -6,7 +6,10 @@ export const environment = {
   // -------------------------------------------------------------------------------------------------
 
   backend_api_path: 'http://127.0.0.1:1024/rest/',
-  backend_api_request_test: 'test',
+  backend_api_request_add_task: 'add-task',
+  backend_api_request_update_task: 'update-task',
+  backend_api_request_delete_task: 'delete-task',
+  backend_api_request_get_all_tasks: 'tasks',
 
 
   // -------------------------------------------------------------------------------------------------
@@ -20,7 +23,7 @@ export const environment = {
   // Debugging
   // -------------------------------------------------------------------------------------------------
 
-  enableReducerLogging: false,
+  enableReducerLogging: true,
 
 };
 

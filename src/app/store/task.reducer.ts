@@ -1,5 +1,5 @@
 import {Action, ActionReducer, createReducer, on} from '@ngrx/store';
-import {addTaskToCache, clearTaskCache, removeTaskFromCache} from './task.actions';
+import {addTaskToCache, clearTaskCache, removeTaskFromCache, updateTaskInCache} from './task.actions';
 import {environment} from '../../environments/environment';
 import {Task} from '../interfaces/task.interface';
 
@@ -41,17 +41,24 @@ const reducer: ActionReducer<State, Action> = createReducer(
 
   on(addTaskToCache, (state, {task}) => {
     const newTasks = copyExistingTasksWithoutGivenOne(state, task);
+    task = {...task, cacheDate: new Date()}
     newTasks.push(task);
     const newState = {...state, tasks: newTasks};
-
     logDebugMessages('addTaskToCache', state, newState);
+    return newState;
+  }),
+  on(updateTaskInCache, (state, {task}) => {
+    const newTasks = copyExistingTasksWithoutGivenOne(state, task);
+    task = {...task, cacheDate: new Date()}
+    newTasks.push(task);
+    const newState = {...state, tasks: newTasks};
+    logDebugMessages('updateTaskInCache', state, newState);
     return newState;
   }),
   on(removeTaskFromCache, (state, {task}) => {
     const newTasks = copyExistingTasksWithoutGivenOne(state, task);
     const newState = {...state, tasks: newTasks};
-
-    logDebugMessages('addTaskToCache', state, newState);
+    logDebugMessages('removeTaskFromCache', state, newState);
     return newState;
   }),
   on(clearTaskCache, (state) => {
