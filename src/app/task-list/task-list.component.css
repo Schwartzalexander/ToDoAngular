@@ -1,0 +1,5 @@
+
+.width-up-to-250px, .width-up-to-250px mat-form-field {
+  width: 100%;
+  max-width: 250px;
+}

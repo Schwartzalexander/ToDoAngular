@@ -1,0 +1,61 @@
+<mat-chip-set role="list" aria-label="ToDo List" class="mb-3">
+
+  <mat-chip-option *ngFor="let task of tasks" [color]="getColor(task)" (click)="select(task)"
+                   [selected]="task.completed">{{task.summary}}</mat-chip-option>
+</mat-chip-set>
+
+<form (ngSubmit)="save()" [formGroup]="form">
+  <div class="row">
+    <div class="col">
+      <mat-form-field class="mat-form-input text-input-100">
+        <mat-label i18n="task summary input field label">Summary</mat-label>
+        <input #uidRef formControlName="summary"
+               i18n-placeholder="task due summary input field placeholder" matInput [maxlength]="summaryMaxLength"
+               placeholder="e.g. Feed the cat"
+               required tabindex="0">
+        <span class="character-counter">{{uidRef.value.length}}/{{summaryMaxLength}}</span>
+      </mat-form-field>
+    </div>
+
+    <div class="col">
+      <mat-form-field class="mat-form-input">
+        <mat-label i18n="task due date input field label">Due date</mat-label>
+        <input [matDatepicker]="picker" formControlName="dueDate" matInput>
+        <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="col">
+      <mat-checkbox color="primary" formControlName="completed" i18n
+                    [disabled]="selectedTask !== undefined && selectedTask.completed">Completed
+      </mat-checkbox>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-form-field class="mat-form-textarea-w-100">
+        <mat-label i18n="task due description input field label">Description</mat-label>
+        <textarea #description formControlName="description" cdkAutosizeMaxRows="15"
+                  cdkAutosizeMinRows="2"
+                  cdkTextareaAutosize i18n-placeholder="task due description input field placeholder" matInput
+                  placeholder="E.g. put cat food into the cats favorite bowl and call her with 'Madam Kitty, dinner is ready'"></textarea>
+        <span class="character-counter">{{description.value.length}}</span>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-danger" *ngIf="formError">{{formError}}</div>
+      <button type="submit" mat-raised-button>
+        <mat-icon aria-hidden="true" class="mr-1">save</mat-icon>
+        <span i18n="Save task button">Save</span>
+      </button>
+      <button type="button" mat-raised-button class="ms-3" *ngIf="selectedTask" (click)="delete(selectedTask)">
+        <mat-icon aria-hidden="true" class="mr-1">delete</mat-icon>
+        <span i18n="Delete task button">Delete</span>
+      </button>
+    </div>
+  </div>
+</form>
