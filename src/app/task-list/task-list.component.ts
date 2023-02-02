@@ -38,8 +38,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   getColor(task: Task) {
     if (task.completed)
-      return "accent"
-    return "warn";
+      return "#80FF80"
+    return "whitesmoke";
   }
 
   private createForm(): FormGroup {

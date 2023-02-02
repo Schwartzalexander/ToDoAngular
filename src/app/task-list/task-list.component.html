@@ -1,8 +1,9 @@
-<mat-chip-set role="list" aria-label="ToDo List" class="mb-3">
-
-  <mat-chip-option *ngFor="let task of tasks" [color]="getColor(task)" (click)="select(task)"
-                   [selected]="task.completed">{{task.summary}}</mat-chip-option>
-</mat-chip-set>
+<div class="mb-1">
+  <span class="col-3" *ngFor="let task of tasks">
+    <app-chip [text]="task.summary" [selected]="task?.uid === selectedTask?.uid" [backgroundColor]="getColor(task)"
+              (click)="select(task)"></app-chip>
+  </span>
+</div>
 
 <form (ngSubmit)="save()" [formGroup]="form">
   <div class="row">
@@ -64,10 +65,5 @@
       application. The frontend can be used without the backend, e.g. when the backend is offline. When the backend
       comes back online, the tasks are synchronized between frontend and backend on page reload. Because of a race
       condition, sometimes two reloads might be necessary.</p>
-    <h3 i18n="known issue label">Known issue</h3>
-    <p i18n="known issue paragraph">The MatChips, which are used to display tasks, are not suitable for that purpose,
-      since they have their own selection logic. A clicked MatChip gets a check mark, just like a not clicked, completed
-      task. On the other hand, the checkmark of a completed task disappears when it is clicked. However, due to time
-      constraints, I did not fix this problem.</p>
   </div>
 </form>

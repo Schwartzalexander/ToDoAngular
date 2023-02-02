@@ -20,6 +20,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {HttpClientModule} from "@angular/common/http";
+import { ChipComponent } from './chip/chip.component';
 
 ;
 
@@ -28,7 +29,8 @@ import {HttpClientModule} from "@angular/common/http";
     AppComponent,
     TaskListComponent,
     StartComponent,
-    HeaderComponent
+    HeaderComponent,
+    ChipComponent
   ],
   imports: [
     BrowserModule,
